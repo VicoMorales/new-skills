@@ -1,11 +1,40 @@
 <div *ngIf="errorMessage">{{ errorMessage }}</div>
 
-<div *ngIf="users.length > 0; else noUsers">
-  <ul>
-    <li *ngFor="let user of users">{{ user.name }}</li>
-  </ul>
+<div class="content-users" >
+  <div class="side-content">
+    <ng-container *ngIf="!isLoadingUserOwnerList; else noUsersOwner">
+      <h2>Usuarios Dorados</h2>
+      <ul class="list-users">
+        <li *ngFor="let user of usersOwner"
+        [ngStyle]="getStyle(user)"
+        (click)="onSelectUser(user)">{{ user.name }}</li>
+      </ul>
+    </ng-container>
+    <ng-template #noUsersOwner>
+      <h2 class="skeleton skeleton-title"></h2>
+      <ul class="skeleton-list">
+        <li class="skeleton skeleton-item" *ngFor="let _ of skeletonArray"></li>
+      </ul>
+    </ng-template>
+    <hr>
+    <ng-container *ngIf="!isLoadingUserList else noUsers">
+      <h2>Usuarios Plata</h2>
+      <ul class="list-users">
+        <li *ngFor="let user of users"
+        [ngStyle]="getStyle(user)"
+        (click)="onSelectUser(user)">{{ user.name }}</li>
+      </ul>
+    </ng-container>
+    <ng-template #noUsers>
+      <h2 class="skeleton skeleton-title"></h2>
+      <ul class="skeleton-list">
+        <li class="skeleton skeleton-item" *ngFor="let _ of skeletonArray"></li>
+      </ul>
+    </ng-template>
+  </div>
+  <div class="detail" *ngIf="userActive">
+    <app-user [user]="userActive"></app-user>
+  </div>
 </div>
 
-<ng-template #noUsers>
-  <p>No se encontraron usuarios.</p>
-</ng-template>
+

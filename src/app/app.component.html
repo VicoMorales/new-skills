@@ -1,6 +1,13 @@
 <main class="main" *ngIf="!(isLoading$ | async)">
+  <div class="header">
+    <h1>Patron Presenter</h1>
+    <nav>
+      <a routerLink="#" routerLinkActive="active">Users</a>
+      <a routerLink="#" routerLinkActive="active">Posts</a>
+      <a routerLink="#" routerLinkActive="active">Comments</a>
+    </nav>
+  </div>
   <div class="content">
-    <h1>HOME</h1>
     <router-outlet />
   </div>
 </main>

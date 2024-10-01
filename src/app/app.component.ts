@@ -26,6 +26,6 @@ export class AppComponent implements OnInit {
     this.currentComponent = Math.random() > 0.5 ? LoadingComponent : LoadingV2Component;
     setTimeout(() => {
       this.isLoading.next(false);
-    }, 5000);
+    }, 2000);
   }
 }
